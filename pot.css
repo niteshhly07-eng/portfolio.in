@@ -1,0 +1,364 @@
+/* =========================
+1. ROOT VARIABLES
+========================= */
+
+:root {
+    --bg:black;
+    --ink: #101828;
+    --muted: #566074;
+    --line: #DDE1EA;
+    --accent: #3A4BFF;
+    --accent-ink: #FFFFFF;
+    --frame: #E6E9F5;
+
+    --head: "Bricolage Grotesque", Arial, sans-serif;
+    --body: "DM Sans", Arial, sans-serif;
+
+    box-sizing: border-box;
+    color-scheme: light;
+}
+
+/* =========================
+   2. DARK MODE
+========================= */
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #0f4cc6;
+        --ink: #EEF0F5;
+        --muted: #9AA3B2;
+        --line: #1352be;
+        --accent: #8C9BFF;
+        --accent-ink: #0E1117;
+        --frame: blue;
+
+        color-scheme: dark;
+    }
+}
+
+/* =========================
+   3. GLOBAL STYLES
+========================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* =========================
+   4. NAVIGATION BAR
+========================= */
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.logo {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--accent);
+}
+
+.nav ul {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav ul a {
+    color: var(--muted);
+    font-size: 15px;
+    padding: 5px 0;
+
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav ul a:hover,
+.nav ul a[aria-current] {
+    color: var(--ink);
+    border-color: var(--accent);
+}
+
+/* =========================
+   5. HERO SECTION
+========================= */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 64px;
+
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+
+    min-height: calc(100vh - 96px);
+}
+
+/* =========================
+   6. HERO TEXT
+========================= */
+
+.hero-text h1 {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -2px;
+
+    margin: 0 0 16px;
+}
+
+.role {
+    font-family: var(--head);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--accent);
+
+    margin: 0 0 24px;
+}
+
+.hero-text p.about {
+    max-width: 544px;
+    color: var(--muted);
+
+    margin: 0 0 36px;
+}
+
+/* =========================
+   7. BUTTONS
+========================= */
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.btn {
+    display: inline-block;
+
+    padding: 14px 26px;
+    border-radius: 999px;
+
+    font-weight: 500;
+    border: 1.5px solid var(--ink);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+}
+
+.btn.primary:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 8px 24px rgba(58, 75, 255, 0.2);
+}
+
+.btn.ghost:hover {
+    background: var(--ink);
+    color: var(--bg);
+}
+
+/* =========================
+   8. PROFILE IMAGE
+========================= */
+
+.hero-image {
+    position: relative;
+    justify-self: center;
+
+    width: min(100%, 416px);
+    aspect-ratio: 4 / 5;
+}
+
+/* Decorative border behind image */
+
+.hero-image::before {
+    content: "";
+
+    position: absolute;
+    inset: 20px -20px -20px 20px;
+
+    border: 1.5px solid var(--accent);
+    border-radius: 192px 192px 24px 24px;
+}
+
+/* Actual image */
+
+.hero-image img {
+    position: relative;
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    background: var(--frame);
+
+    border-radius: 192px 192px 24px 24px;
+
+    transition: transform 0.4s ease;
+}
+
+.hero-image:hover img {
+    transform: translateY(-5px);
+}
+
+/* =========================
+   9. RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 832px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding-top: 24px;
+        min-height: auto;
+    }
+
+    .hero-image {
+        order: -1;
+        width: min(70%, 288px);
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .hero-text p.about {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .actions {
+        justify-content: center;
+    }
+
+    .nav ul {
+        gap: 20px;
+    }
+}
+
+/* =========================
+   10. MOBILE SCREEN
+========================= */
+
+@media (max-width: 480px) {
+
+    .nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 20px 16px;
+    }
+
+    .nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .hero {
+        padding: 24px 20px 56px;
+        gap: 40px;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(38px, 10vw, 48px);
+    }
+
+    .role {
+        font-size: 19px;
+    }
+
+    .hero-text p.about {
+        font-size: 15px;
+    }
+
+    .hero-image {
+        width: min(75%, 240px);
+    }
+
+    .actions {
+        gap: 12px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* =========================
+   11. REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
